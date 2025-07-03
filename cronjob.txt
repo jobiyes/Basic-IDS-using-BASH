@@ -1,0 +1,1 @@
+0 9 * * * "$HOME/IDS\ Project/intrusion_detection.sh"
