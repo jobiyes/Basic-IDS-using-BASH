@@ -1,1 +1,2 @@
 0 9 * * * "$HOME/IDS\ Project/intrusion_detection.sh"
+#Run the intrusion_detction.sh script daily at 9 AM
