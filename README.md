@@ -15,7 +15,7 @@ This project is a simple **Bash-based intrusion detection system** that scans Li
 
 ### Project Structure
 ```
-.
+/.
 ├── intrusion_detection.sh   # Main script
 ├── logs/                    # Alert logs (auto-created)
 ├── .gitignore               # Ignores logs and temp files
