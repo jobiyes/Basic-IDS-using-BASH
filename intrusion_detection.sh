@@ -15,7 +15,7 @@ if [ ! -f "$LOG_FILE" ]; then
 fi
 
 # === [ Failed Login Attempts ] ===
-echo "Checking for failed login attempts..." >> "$ALERT_LOG"
+echo -e "Checking for failed login attempts..." >> "$ALERT_LOG"
 grep -i "password check failed" "$LOG_FILE" | tail -n 10 >> "$ALERT_LOG"
 
 # === [ Root Login Sessions ] ===
@@ -28,16 +28,16 @@ grep -i "sudo:" "$LOG_FILE" | tail -n 5 >> "$ALERT_LOG"
 
 # === [ Brute-force Detection: Repeated IPs ] ===
 echo -e "\nChecking for repeated failed login IPs (brute-force attempts)..." >> "$ALERT_LOG"
-grep "Failed password" "$LOG_FILE" | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head >> "$ALERT_LOG"
+grep -i "Failed password" "$LOG_FILE" | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head >> "$ALERT_LOG"
 
 # === [ New Users Added ] ===
 echo -e "\nChecking for new users added..." >> "$ALERT_LOG"
-grep "useradd" "$LOG_FILE" | tail -n 5 >> "$ALERT_LOG"
+grep -i "useradd" "$LOG_FILE" | tail -n 5 >> "$ALERT_LOG"
 
 # === [ Successful SSH Logins ] ===
 echo -e "\nChecking for successful SSH logins..." >> "$ALERT_LOG"
-grep "Accepted password" "$LOG_FILE" | tail -n 5 >> "$ALERT_LOG"
+grep -i "Accepted password" "$LOG_FILE" | tail -n 5 >> "$ALERT_LOG"
 
 # === [ Completion Message ] ===
 echo -e "\nIntrusion detection check complete."
-echo "Alerts saved to: $ALERT_LOG"
+echo -e "Alerts saved to: $ALERT_LOG"
