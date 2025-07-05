@@ -1,4 +1,12 @@
-alerts_*.log
+# Ignore all generated alert logs
+logs/
+*.log
 
+# Ignore OS/system files
+.DS_Store
+Thumbs.db
 
-
+# Ignore backup and temp files
+*~
+*.swp
+*.tmp
