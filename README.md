@@ -1,52 +1,56 @@
-# Linux Intrusion Detection System (IDS) Using Bash
+#  Intrusion Detection Script (Bash)
 
-This project is a basic Intrusion Detection System (IDS) built with a Bash script on Linux. It monitors system authentication logs to detect:
+This project is a simple **Bash-based intrusion detection system** that scans Linux authentication logs to identify suspicious activity.
 
--  Failed login attempts
--  Root user login sessions
+##  Features
 
-All alerts are saved into a single log file: alerts.log.
-
-
-##  Project Structure
-IDS-Project:
-
-1.intrusion_detection.sh        # Main Bash script
-
-2.alerts_YYYY-MM-DD-HH-MM.log  # Auto-generated alert files (example)
-
-3.gitignore                    # Ignores all alerts_*.log files
-
-4.cronjob.txt                  # Cron job instruction
-
-5.README.md                     # Project documentation
+- Detects failed login attempts
+- Detects root login sessions
+- Monitors `sudo` command usage
+- Flags repeated failed login IPs (possible brute-force)
+- Detects new users added to the system
+- Logs successful SSH logins
+- Generates a new alert log file on every run
 
 
+### Project Structure
+```
+.
+├── intrusion_detection.sh   # Main script
+├── logs/                    # Alert logs (auto-created)
+├── .gitignore               # Ignores logs and temp files
+└── README.md                # Project info
+```
 
-## How to run it manually
+### Make sure the script is executeable:  
+```
+chmod +x intrusion_detection.sh
+```
+
+### How to run it manually
+```
 ./intrusion_detection.sh
+```
 
 
-
-## Check the results in
+### Check the results in
+```
 alerts_YYYY-MM-DD-HH-MM.log    # A new alert log is created every time the script runs
-
+```
 
 
 
 ## Automate with cron
-1.Open your crontab configuration:
 
+1. Open your crontab configuration:
+```
 crontab -e
+```
 
-
-2.Add the following line to schedule the script:
-
+2. Add the following line to schedule the script:
+```
 0 9 * * * $HOME/IDS\ Project/intrusion_detection.sh
-
-3.Make sure the script is executeable:  
-
-chmod +x intrusion_detection.sh
+```
 
 Once set,Your script will run daily at 9am automatically
 
